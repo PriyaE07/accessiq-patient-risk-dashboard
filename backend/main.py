@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from google import genai
+from google.genai.types import HttpOptions
 from pydantic import BaseModel
 
 from alerts_db import create_alert, init_db, list_alerts, update_alert_status
@@ -21,7 +22,12 @@ PROJECT_ROOT = THIS_DIR.parent
 # Loads GEMINI_API_KEY from backend/.env (gitignored) into the environment.
 # The genai.Client() call below picks it up automatically from there.
 load_dotenv(THIS_DIR / ".env")
-gemini_client = genai.Client()
+# Explicit timeout -- without one, the underlying HTTP client has no upper
+# bound, so a network hiccup between the host and Google's API (seen on
+# Render: some cloud providers have flaky outbound routing that causes a
+# TCP connection to hang instead of failing fast) blocks the request
+# forever instead of erroring out in a few seconds.
+gemini_client = genai.Client(http_options=HttpOptions(timeout=20000))
 GEMINI_MODEL = "gemini-3.6-flash"
 
 
@@ -330,12 +336,20 @@ def explain_chat(chat: ChatRequest):
         chat.prediction_type, chat.risk_score, chat.top_factors
     )
 
-    interaction = gemini_client.interactions.create(
-        model=GEMINI_MODEL,
-        system_instruction=system_instruction,
-        input=chat.message,
-        previous_interaction_id=chat.previous_interaction_id,
-    )
+    try:
+        interaction = gemini_client.interactions.create(
+            model=GEMINI_MODEL,
+            system_instruction=system_instruction,
+            input=chat.message,
+            previous_interaction_id=chat.previous_interaction_id,
+        )
+    except Exception as exc:
+        # Surface a clean 502 instead of letting an unhandled exception (or,
+        # before the client timeout was added, an indefinite hang) reach the
+        # user as a bare "Load failed" with no explanation.
+        raise HTTPException(
+            status_code=502, detail=f"The chat service didn't respond in time: {exc}"
+        )
 
     return {
         "reply": interaction.output_text,
