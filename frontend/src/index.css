@@ -1,0 +1,104 @@
+:root {
+  /* Chart chrome & ink (from the validated palette) */
+  --surface-1: #fcfcfb;
+  --page-plane: #f9f9f7;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border: #e1e0d9;
+  --border-strong: #c3c2b7;
+
+  /* Primary accent — categorical slot 1 (blue) */
+  --accent: #2a78d6;
+  --accent-bg: #cde2fb;
+  --accent-strong: #1c5aa8;
+
+  /* Status palette (fixed — never themed) */
+  --status-good: #0ca30c;
+  --status-good-bg: #e3f6e3;
+  --status-warning: #fab219;
+  --status-warning-bg: #fff4de;
+  --status-critical: #d03b3b;
+  --status-critical-bg: #fbe4e4;
+
+  /* Card elevation — subtle, not decorative (see plan.md: clinical
+     dashboards should read as calm, not flashy). Two steps: resting and
+     hover/raised. */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 2px 6px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 10px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.05);
+
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  color-scheme: light dark;
+  font: 16px/1.5 var(--sans);
+  color: var(--text-primary);
+  background: var(--page-plane);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-1: #1a1a19;
+    --page-plane: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border: #2c2c2a;
+    --border-strong: #383835;
+
+    --accent: #3987e5;
+    --accent-bg: #184f95;
+    --accent-strong: #5ba3f0;
+
+    --status-good-bg: #113311;
+    --status-warning-bg: #3a2c0f;
+    --status-critical-bg: #3a1414;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface-1: #1a1a19;
+  --page-plane: #0d0d0d;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #898781;
+  --border: #2c2c2a;
+  --border-strong: #383835;
+
+  --accent: #3987e5;
+  --accent-bg: #184f95;
+  --accent-strong: #5ba3f0;
+
+  --status-good-bg: #113311;
+  --status-warning-bg: #3a2c0f;
+  --status-critical-bg: #3a1414;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  color: var(--text-secondary);
+}

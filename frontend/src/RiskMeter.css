@@ -1,0 +1,115 @@
+.risk-meter-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 24px 28px;
+  max-width: 320px;
+  text-align: center;
+}
+
+.risk-meter-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.risk-meter-hero {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.risk-meter-hero.status-good {
+  color: var(--status-good);
+}
+.risk-meter-hero.status-warning {
+  color: #9a6a00;
+}
+.risk-meter-hero.status-critical {
+  color: var(--status-critical);
+}
+
+.risk-meter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.risk-meter-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 11px;
+  color: white;
+}
+
+.risk-meter-badge.status-good {
+  background: var(--status-good-bg);
+  color: var(--status-good);
+}
+.risk-meter-badge.status-good .risk-meter-badge-icon {
+  background: var(--status-good);
+}
+
+.risk-meter-badge.status-warning {
+  background: var(--status-warning-bg);
+  color: #9a6a00;
+}
+.risk-meter-badge.status-warning .risk-meter-badge-icon {
+  background: var(--status-warning);
+}
+
+.risk-meter-badge.status-critical {
+  background: var(--status-critical-bg);
+  color: var(--status-critical);
+}
+.risk-meter-badge.status-critical .risk-meter-badge-icon {
+  background: var(--status-critical);
+}
+
+.risk-meter-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent-bg);
+  overflow: hidden;
+}
+
+.risk-meter-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.risk-meter-fill.status-good {
+  background: var(--status-good);
+}
+.risk-meter-fill.status-warning {
+  background: var(--status-warning);
+}
+.risk-meter-fill.status-critical {
+  background: var(--status-critical);
+}
+
+.risk-meter-recommendation {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: left;
+}

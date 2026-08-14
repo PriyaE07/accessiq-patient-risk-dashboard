@@ -1,0 +1,187 @@
+.overview-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .overview-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.overview-section {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 20px 24px;
+}
+
+.overview-section h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.overview-sample-note {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.overview-loading {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.overview-stat-tiles {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.overview-stat-tile {
+  flex: 1;
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.overview-stat-value {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* First tile is always "flagged count" -- a risk signal, so it earns the
+   critical color (same rule as everywhere else: color only where it
+   carries real meaning). Second tile ("average risk") gets the accent
+   color instead, since it's a neutral summary stat, not itself a flag. */
+.overview-stat-tile:first-child .overview-stat-value {
+  color: var(--status-critical);
+}
+
+.overview-stat-tile:last-child .overview-stat-value {
+  color: var(--accent);
+}
+
+.overview-stat-label {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.overview-chart-block {
+  margin-bottom: 24px;
+}
+
+.overview-chart-block:last-child {
+  margin-bottom: 0;
+}
+
+.overview-chart-block h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.overview-chart-note {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Risk distribution bars */
+.overview-band-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.overview-band-row {
+  display: grid;
+  grid-template-columns: 72px 1fr 32px;
+  align-items: center;
+  gap: 10px;
+}
+
+.overview-band-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.overview-band-track {
+  height: 14px;
+  background: var(--page-plane);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.overview-band-fill {
+  height: 100%;
+  border-radius: 4px;
+  min-width: 2px;
+}
+
+.overview-band-fill.status-good {
+  background: var(--status-good);
+}
+
+.overview-band-fill.status-warning {
+  background: var(--status-warning);
+}
+
+.overview-band-fill.status-critical {
+  background: var(--status-critical);
+}
+
+.overview-band-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+/* Top factors bars */
+.overview-factor-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.overview-factor-row {
+  display: grid;
+  grid-template-columns: 150px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+}
+
+.overview-factor-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.overview-factor-track {
+  height: 10px;
+  background: var(--page-plane);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.overview-factor-fill {
+  height: 100%;
+  border-radius: 4px;
+  min-width: 2px;
+  background: var(--accent);
+}
+
+.overview-factor-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+}

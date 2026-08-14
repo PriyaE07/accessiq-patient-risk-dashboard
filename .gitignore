@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# data/raw/ is ignored by default, but the two CSVs the backend actually
+# reads at startup (worklist source) are committed on purpose -- Render
+# needs them at deploy time, and they're small (~28MB total), public,
+# anonymized datasets with no privacy concern. IDS_mapping.csv isn't
+# needed at runtime (referenced only in EDA notebook narrative), so it
+# stays untracked.
+data/raw/*
+!data/raw/KaggleV2-May-2016.csv
+!data/raw/diabetic_data.csv
+.DS_Store
+node_modules/
+.env
+backend/alerts.db
